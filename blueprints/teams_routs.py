@@ -22,3 +22,15 @@ def delete_team(team_id):
 def update_team(team_id):
     data = request.get_json()
     return update_team_in_db(team_id, data)
+
+
+
+@bp_teams.route('/<int:team_id>', methods=['GET'])
+def get_team(team_id):
+    team = Team.query.get_or_404(team_id)
+    my_list = [team.C , team.PF, team.SF, team.SG, team.PG ]
+    dict_team = {}
+    for i in range(len(my_list)):
+        player = Player.query.filter_by(playerId=my_list[i]).first()
+        dict_team[player.position] = player.to_dict()
+    return jsonify({'name':team.team_name,'players': dict_team}), 200

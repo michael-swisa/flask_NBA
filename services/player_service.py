@@ -18,6 +18,12 @@ def load_data_players_from_request(*args):
 
 
 def create_player_to_db(player):
+    avg_points = get_avg_points_per_season(player['position'], player['season'])
+
+    if player['games'] != 0 and avg_points != 0:
+        PPG_Ratio = (player['points'] / player['games']) / avg_points
+    else:
+        PPG_Ratio = 0
     player_model = Player(
         playerName=player['playerName'],
         team=player['team'],
@@ -29,7 +35,7 @@ def create_player_to_db(player):
         threePercent=player['threePercent'],
         ATR=player['assists'] / player['turnovers'] if player['turnovers'] > 0 else 0,
         playerId=player['playerId'],
-        # PPG_Ratio=player['PPG_Ratio']
+        PPG_Ratio=PPG_Ratio
     )
     return player_model
 
@@ -49,6 +55,18 @@ def load_and_save_players_to_db(years_list):
         player_model = create_player_to_db(player)
         save_player_to_db(player_model)
     return
+
+
+def get_avg_points_per_season(position, season):
+    players = Player.query.filter_by(position=position, season=season).all()
+    total_points = sum(player.points for player in players)
+    total_games = sum(player.games for player in players)
+    return total_points / total_games if total_games!= 0 else 0
+
+
+
+
+
 
 
 if __name__ == '__main__':
