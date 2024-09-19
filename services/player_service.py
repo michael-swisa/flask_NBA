@@ -1,32 +1,55 @@
-import my_request
-from itertools import groupby
-import files
+from db import db
+from models.player import Player
+from requests import request
+
+
+def get_players(year):
+    url_players = rf'http://b8c40s8.143.198.70.30.sslip.io/api/PlayerDataTotals/query?season={year}&&pageSize=1000'
+    players_response = request(url=url_players, method='GET')
+    return players_response.json()
 
 
 def load_data_players_from_request(*args):
-    players = []
+    players_list = []
     for year in args:
-        response = my_request.get_players(year)
-        players.extend(response)
-    return players
+        response = get_players(year)
+        players_list.extend(response)
+    return players_list
 
-def sorted_json_players(players):
-    sorted_players = sorted(players, key=lambda player: player['playerName'])
-    return sorted_players
-def group_players_by_name(players):
-    grouped_players = {}
 
-def group_players_by_name(players):
-    grouped_players = {}
-    for key, value in groupby(players, key=lambda player: player['playerName']):
-        grouped_players[key] = list(value)
-    return grouped_players
+def create_player_to_db(player):
+    player_model = Player(
+        playerName=player['playerName'],
+        team=player['team'],
+        position=player['position'],
+        points=player['points'],
+        season=player['season'],
+        games=player['games'],
+        twoPercent=player['twoPercent'],
+        threePercent=player['threePercent']
+        # ATR=player['assists'] / player['turnovers'],
+        # PPG_Ratio=player['PPG_Ratio']
+    )
+    return player_model
 
-def save_to_json(data, filename):
-    files.write_json(filename, data)
+
+def save_player_to_db(player):
+    try:
+        db.session.add(player)
+        db.session.commit()
+    except Exception as e:
+        print(f'Error while saving player to DB: {e}')
+        db.session.rollback()
+
+
+def load_and_save_players_to_db(years_list):
+    players = load_data_players_from_request(*years_list)
+    # save_to_json(players, 'players.json')
+    for player in players:
+        player_model = create_player_to_db(player)
+        save_player_to_db(player_model)
+    return
+
 
 if __name__ == '__main__':
-    players = load_data_players_from_request(2022, 2023, 2024)
-    players_sorted = sorted_json_players(players)
-    players_grouped = group_players_by_name(players_sorted)
-    save_to_json(players_grouped, 'players_grouped.json')
+    load_and_save_players_to_db([2022, 2023, 2024])
