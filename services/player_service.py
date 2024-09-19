@@ -26,8 +26,9 @@ def create_player_to_db(player):
         season=player['season'],
         games=player['games'],
         twoPercent=player['twoPercent'],
-        threePercent=player['threePercent']
-        # ATR=player['assists'] / player['turnovers'],
+        threePercent=player['threePercent'],
+        ATR=player['assists'] / player['turnovers'] if player['turnovers'] > 0 else 0,
+        playerId=player['playerId'],
         # PPG_Ratio=player['PPG_Ratio']
     )
     return player_model

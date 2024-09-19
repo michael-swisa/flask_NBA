@@ -3,8 +3,9 @@ from db import db
 from models.player import Player
 import services.player_service as player_service
 
-bp_player = Blueprint('player', __name__, url_prefix='/api/players')
+bp_player = Blueprint('player', __name__)
 
+position_list =  ['C', 'PF', 'SF', 'SG', 'PG']
 
 @bp_player.route('/', methods=['POST'])
 def load_and_save_players_to_db():
@@ -18,6 +19,8 @@ def get_players_by_position():
     season = request.args.get('season')
     if not position:
         return jsonify({'error': 'Position is required'}), 400
+    if position not in position_list:
+        return jsonify({'error': 'Invalid position'}), 400
     if not season:
         players = Player.query.filter_by(position=position).all()
         players_json = [player.to_dict() for player in players]

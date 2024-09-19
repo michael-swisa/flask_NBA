@@ -12,6 +12,7 @@ class Player(db.Model):
     twoPercent = db.Column(db.Float, nullable=True)
     threePercent = db.Column(db.Float, nullable=True)
     ATR = db.Column(db.Float, nullable=True)
+    playerId = db.Column(db.String(100), nullable=True)
     PPG_Ratio = db.Column(db.Float, nullable=True)
 
     def to_dict(self):

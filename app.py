@@ -1,5 +1,5 @@
 from flask import Flask
-from blueprints.teams_routs import bp_team
+from blueprints.teams_routs import bp_teams
 from blueprints.players_routs import bp_player
 from db import db
 
@@ -15,7 +15,7 @@ with app.app_context():
     db.create_all()
     db.session.commit()
 
-app.register_blueprint(bp_team, url_prefix='/api/users')
+app.register_blueprint(bp_teams, url_prefix='/api/teams')
 app.register_blueprint(bp_player, url_prefix='/api/players')
 
 
