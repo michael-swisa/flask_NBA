@@ -1,0 +1,20 @@
+{
+    "team_name": "a",
+    "player_ids": ["gordoaa01", "henryaa01", "holidaa01", "wiggiaa01", "horfoal01"]
+}
+
+{
+    "team_name": "b",
+    "player_ids": ["pokusal01", "nesmiaa01", "goodwbr01", "murkead01", "lenal01"]
+}
+
+{
+    "team_name": "b",
+    "player_ids": ["johnsal02", "naderab01", "wanambr01", "caverah01", "sengual01"]
+}
+
+PF = gordoaa01, pokusal01, johnsal02
+SF = henryaa01, nesmiaa01, naderab01, schofad01, fordal03
+PG = holidaa01, goodwbr01, wanambr01, brookar01
+SG = wiggiaa01, murkead01, caverah01, burksal01
+C = horfoal01, lenal01, sengual01

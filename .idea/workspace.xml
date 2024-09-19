@@ -4,13 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c2ab407f-0be9-44be-b742-4f0b171a56c1" name="Changes" comment="Added functions that bring all the players of the selected years and load them into a json file after group">
+    <list default="true" id="c2ab407f-0be9-44be-b742-4f0b171a56c1" name="Changes" comment="function to add team to db">
+      <change afterPath="$PROJECT_DIR$/services/teams_service.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/teams" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blueprints/players_routs.py" beforeDir="false" afterPath="$PROJECT_DIR$/blueprints/players_routs.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/blueprints/teams_routs.py" beforeDir="false" afterPath="$PROJECT_DIR$/blueprints/teams_routs.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/player.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/player.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/player_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/player_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/team.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/team.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +61,8 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Python.app.executor": "Run",
+    "Flask server.Flask (app.py).executor": "Run",
+    "Python.app.executor": "Debug",
     "Python.player_service.executor": "Run",
     "Python.request (1).executor": "Run",
     "Python.request.executor": "Run",
@@ -87,7 +88,7 @@
       <recent name="C:\_kodcode2\second half\Python\flask_NBA\services" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.app">
+  <component name="RunManager" selected="Flask server.Flask (app.py)">
     <configuration name="app" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="flask_NBA" />
       <option name="ENV_FILES" value="" />
@@ -134,8 +135,25 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="Flask (app.py)" type="Python.FlaskServer" temporary="true" nameIsGenerated="true">
+      <module name="flask_NBA" />
+      <option name="target" value="$PROJECT_DIR$/app.py" />
+      <option name="targetType" value="PATH" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Flask server.Flask (app.py)" />
         <item itemvalue="Python.app" />
         <item itemvalue="Python.my_request" />
       </list>
@@ -160,7 +178,7 @@
       <workItem from="1726726114166" duration="5000" />
       <workItem from="1726740810953" duration="75000" />
       <workItem from="1726740897526" duration="23000" />
-      <workItem from="1726740947926" duration="1534000" />
+      <workItem from="1726740947926" duration="14114000" />
     </task>
     <task id="LOCAL‎-00001" summary="add db">
       <option name="closed" value="true" />
@@ -202,7 +220,23 @@
       <option name="project" value="LOCAL‎" />
       <updated>1726734933534</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL‎-00006" summary="add get_players_by_position">
+      <option name="closed" value="true" />
+      <created>1726742767510</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL‎-00006" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1726742767510</updated>
+    </task>
+    <task id="LOCAL‎-00007" summary="function to add team to db">
+      <option name="closed" value="true" />
+      <created>1726748012663</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL‎-00007" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1726748012663</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -214,11 +248,14 @@
     <MESSAGE value="add model team" />
     <MESSAGE value="add service player" />
     <MESSAGE value="Added functions that bring all the players of the selected years and load them into a json file after group" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added functions that bring all the players of the selected years and load them into a json file after group" />
+    <MESSAGE value="add get_players_by_position" />
+    <MESSAGE value="function to add team to db" />
+    <option name="LAST_COMMIT_MESSAGE" value="function to add team to db" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/flask_NBA$flask_NBA.coverage" NAME="flask_NBA Coverage Results" MODIFIED="1726730998351" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/flask_NBA$request.coverage" NAME="request Coverage Results" MODIFIED="1726731014097" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/services" />
-    <SUITE FILE_PATH="coverage/flask_NBA$app.coverage" NAME="app Coverage Results" MODIFIED="1726742083003" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/flask_NBA$app.coverage" NAME="app Coverage Results" MODIFIED="1726750422889" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/flask_NBA$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1726754974819" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>
