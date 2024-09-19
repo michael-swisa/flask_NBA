@@ -15,8 +15,8 @@ with app.app_context():
     db.create_all()
     db.session.commit()
 
-app.register_blueprint(bp_team, url_prefix='/users')
-app.register_blueprint(bp_player, url_prefix='/players')
+app.register_blueprint(bp_team, url_prefix='/api/users')
+app.register_blueprint(bp_player, url_prefix='/api/players')
 
 
 

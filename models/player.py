@@ -13,3 +13,17 @@ class Player(db.Model):
     threePercent = db.Column(db.Float, nullable=True)
     ATR = db.Column(db.Float, nullable=True)
     PPG_Ratio = db.Column(db.Float, nullable=True)
+
+    def to_dict(self):
+        return {
+            'playerName': self.playerName,
+            'team': self.team,
+            'position': self.position,
+            'season': self.season,
+            'points': self.points,
+            'games': self.games,
+            'twoPercent': self.twoPercent,
+            'threePercent': self.threePercent,
+            'ATR': self.ATR,
+            'PPG_Ratio': self.PPG_Ratio
+        }

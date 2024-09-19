@@ -44,7 +44,6 @@ def save_player_to_db(player):
 
 def load_and_save_players_to_db(years_list):
     players = load_data_players_from_request(*years_list)
-    # save_to_json(players, 'players.json')
     for player in players:
         player_model = create_player_to_db(player)
         save_player_to_db(player_model)
